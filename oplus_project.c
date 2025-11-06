@@ -51,19 +51,10 @@ static ProjectInfoOCDT *g_project = NULL;
 static struct pcb_match pcb_str[] = {
     {.version=PRE_EVB1, .str="PRE_EVB1"},
     {.version=PRE_EVB2, .str="PRE_EVB2"},
-    {.version=EVB1, .str="EVB1"},
-    {.version=EVB2, .str="EVB2"},
     {.version=EVB3, .str="EVB3"},
     {.version=EVB4, .str="EVB4"},
     {.version=EVB5, .str="EVB5"},
     {.version=EVB6, .str="EVB6"},
-    {.version=T0, .str="T0"},
-    {.version=T1, .str="T1"},
-    {.version=T2, .str="T2"},
-    {.version=T3, .str="T3"},
-    {.version=T4, .str="T4"},
-    {.version=T5, .str="T5"},
-    {.version=T6, .str="T6"},
     {.version=EVT1, .str="EVT1"},
     {.version=EVT2, .str="EVT2"},
     {.version=EVT3, .str="EVT3"},
@@ -84,10 +75,7 @@ static struct pcb_match pcb_str[] = {
     {.version=PVT6, .str="PVT6"},
     {.version=MP1, .str="MP1"},
     {.version=MP2, .str="MP2"},
-    {.version=MP3, .str="MP3"},
-    {.version=MP4, .str="MP4"},
     {.version=MP5, .str="MP5"},
-    {.version=MP6, .str="MP6"},
 };
 
 
