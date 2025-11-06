@@ -15,10 +15,6 @@
 
 #include <soc/oplus/system/oplus_project.h>
 
-#ifdef CONFIG_MTK_SECURITY_SW_SUPPORT
-#include <sec_boot_lib.h>
-#endif
-
 #ifdef CONFIG_QCOM_SMEM
 #include <linux/soc/qcom/smem.h>
 #elif CONFIG_MSM_SMEM
@@ -48,37 +44,6 @@
 
 static ProjectInfoOCDT *g_project = NULL;
 
-static struct pcb_match pcb_str[] = {
-    {.version=PRE_EVB1, .str="PRE_EVB1"},
-    {.version=PRE_EVB2, .str="PRE_EVB2"},
-    {.version=EVB3, .str="EVB3"},
-    {.version=EVB4, .str="EVB4"},
-    {.version=EVB5, .str="EVB5"},
-    {.version=EVB6, .str="EVB6"},
-    {.version=EVT1, .str="EVT1"},
-    {.version=EVT2, .str="EVT2"},
-    {.version=EVT3, .str="EVT3"},
-    {.version=EVT4, .str="EVT4"},
-    {.version=EVT5, .str="EVT5"},
-    {.version=EVT6, .str="EVT6"},
-    {.version=DVT1, .str="DVT1"},
-    {.version=DVT2, .str="DVT2"},
-    {.version=DVT3, .str="DVT3"},
-    {.version=DVT4, .str="DVT4"},
-    {.version=DVT5, .str="DVT5"},
-    {.version=DVT6, .str="DVT6"},
-    {.version=PVT1, .str="PVT1"},
-    {.version=PVT2, .str="PVT2"},
-    {.version=PVT3, .str="PVT3"},
-    {.version=PVT4, .str="PVT4"},
-    {.version=PVT5, .str="PVT5"},
-    {.version=PVT6, .str="PVT6"},
-    {.version=MP1, .str="MP1"},
-    {.version=MP2, .str="MP2"},
-    {.version=MP5, .str="MP5"},
-};
-
-
 struct proc_dir_entry *oppo_info = NULL;
 struct proc_dir_entry *oppo_info_temp = NULL;
 
@@ -91,7 +56,6 @@ static void init_project_version(void)
 	unsigned int  smem_size;
 #endif
     void *smem_addr;
-    char *PCB_version_name = NULL;
     uint16_t index = 0;
 
     if (g_project) {
@@ -119,14 +83,6 @@ static void init_project_version(void)
             g_project = NULL;
             return;
         }
-
-        do {
-            if(pcb_str[index].version == g_project->nDataSCDT.PCB){
-                PCB_version_name = pcb_str[index].str;
-                break;
-            }
-            index++;
-        }while(index < sizeof(pcb_str)/sizeof(struct pcb_match));
 
         pr_err("KE Project:%d, Audio:%d, nRF:%d, PCB:%s\n",
             g_project->nDataBCDT.ProjectNo,
